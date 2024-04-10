@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Agregar Un Proyecto</h2>
+        <p>Ingrese El Nombre Del Proyecto</p>
+        <input type="text" id="nombre" placeholder="..." required>
+        <p>Ingrese La Descripcion Del Proyecto</p>
+        <input type="text" id="descripcion" placeholder="..." required>
+        <button onclick="AgregarProyecto()" class="Agregar">Agregar Proyecto</button>
+    </div>
+    <div class="container">
+        <h2>Agregar Una Tarea Al Proyecto</h2>
+        <p>Ingrese La Descripcion Del Proyecto</p>
+        <input type="text" id="descripcion2" placeholder="..." required>
+        <p>Ingrese El Estado De Completado</p>
+        <select class="Completado">
+        <option selected>Pendiente</option>
+        <option value="1">Completado</option>
+        </select>
+        <p>Ingrese La Fecha De Vencimiento</p>
+        <input type="date" id="fecha">
+        <button onclick="AgregarTareaAProyecto()" class="Agregar">Agregar Tarea Al Proyecto</button>
+    </div>
+
+    <div class="container">
+        <h2>Otras Opciones</h2>
+        
+    </div>
+</body>
+</html>
