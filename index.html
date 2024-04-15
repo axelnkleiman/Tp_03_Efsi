@@ -19,13 +19,10 @@
     </div>
     <div class="container">
         <h2>Agregar Una Tarea Al Proyecto</h2>
-        <p>Ingrese La Descripcion Del Proyecto</p>
+        <p>Ingrese El Nombre Del Proyecto</p>
+        <input type="text" id="nombreProyecto" placeholder="..." required>
+        <p>Ingrese La Descripcion De La Tarea</p>
         <input type="text" id="descripcion2" placeholder="..." required>
-        <p>Ingrese El Estado De Completado</p>
-        <select class="Completado">
-        <option selected>Pendiente</option>
-        <option value="1">Completado</option>
-        </select>
         <p>Ingrese La Fecha De Vencimiento</p>
         <input type="date" id="fecha">
         <button onclick="AgregarTareaAProyecto()" class="Agregar">Agregar Tarea Al Proyecto</button>
