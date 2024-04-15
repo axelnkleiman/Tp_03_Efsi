@@ -34,9 +34,23 @@
         <button onclick="BuscarTareas()" class="Agregar">Buscar Tareas</button>
     </div>
     <div class="container">
-        <h2>Otras Opciones</h2>
+        <h2>Marcar Tarea Como Completada</h2>
+        <p>Ingrese Nombre Del Proyecto</p>
+        <input type="text" id="nombreProyecto3" placeholder="..." required>
+        <p>Ingrese La Descripcion De La Tarea</p>
+        <input type="text" id="descripcion3" placeholder="..." required>
+        <button onclick="MarcarTarea()" class="Agregar">Marcar Tarea</button>
     </div>
     <div class="container">
+        <h2>Buscar Tareas Por Fecha De Vencimiento</h2>
+        <p>Ingrese El Nombre Del Proyecto</p>
+        <input type="text" id="nombreProyecto4" placeholder="..." required>
+        <p>Ingrese La Fecha A Buscar</p>
+        <input type="date" id="fecha2">
+        <button onclick="BuscarTareasPorVencimiento()" class="Agregar">Buscar Tareas</button>
+    </div>
+    <div class="container">
+        <h2>Output:</h2>
         <div id="resultados"></div>
         <div id="error"></div>
     </div>
