@@ -24,7 +24,7 @@
         <p>Ingrese La Descripcion De La Tarea</p>
         <input type="text" id="descripcion2" placeholder="..." required>
         <p>Ingrese La Fecha De Vencimiento</p>
-        <input type="date" id="fecha">
+        <input type="date" id="fecha" required>
         <button onclick="AgregarTareaAProyecto()" class="Agregar">Agregar Tarea Al Proyecto</button>
     </div>
     <div class="container">
@@ -38,6 +38,7 @@
     </div>
     <div class="container">
         <div id="resultados"></div>
+        <div id="error"></div>
     </div>
 </body>
 </html>

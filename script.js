@@ -24,8 +24,8 @@ let ListaProyectos = [];
 let proyecto;
 
 function AgregarProyecto(){
-    if (ListaProyectos == null || Verificacion(ListaProyectos, nombre) == false) {
-        proyecto = new Proyecto(document.getElementById('nombre').value, document.getElementById('descripcion').value, [{}])
+    if (ListaProyectos == null || Verificacion(ListaProyectos, document.getElementById('nombre').value) == false) {
+        proyecto = new Proyecto(document.getElementById('nombre').value, document.getElementById('descripcion').value, [])
         ListaProyectos.push(proyecto);
     }
     else {
@@ -35,15 +35,39 @@ function AgregarProyecto(){
     console.log(ListaProyectos)
 }
 function AgregarTareaAProyecto(){
-    tarea = new Tarea(document.getElementById('descripcion2').value, false, document.getElementById('fecha  '))
+    tarea = new Tarea(document.getElementById('descripcion2').value, false, document.getElementById('fecha').value)
     const index = Busqueda(ListaProyectos, document.getElementById('nombreProyecto').value)
-    ListaProyectos[index].pushearListaTareas(tarea)
+    if (index != null && document.getElementById('fecha').value != "") {
+        ListaProyectos[index].pushearListaTareas(tarea)
+    }
+    else if(document.getElementById('fecha').value == ""){
+        document.getElementById('error').innerHTML = 'Error de creacion, fecha nula'
+        console.log('Error de creacion, fecha nula')
+    }
+    else {
+        document.getElementById('error').innerHTML = 'Error de creacion, nombre no encontrado'
+        console.log('Error de creacion, nombre no encontrado')
+    }
     console.log(tarea)
     console.log(ListaProyectos)
 }
 function BuscarTareas(){
+    document.getElementById('error').innerHTML = null
     const index = Busqueda(ListaProyectos, document.getElementById('nombreProyecto2').value)
-    document.getElementById('resultados').innerHTML = 
+    document.getElementById('resultados').innerHTML = IterarTareas(ListaProyectos[index])
+}
+function IterarTareas(item){
+    let retorno = '';
+    for (let index = 0; index < item.listaTareas.length; index++) {
+        const element = item.listaTareas[index]
+        if (element.estado) {
+            retorno += '<p>' + element.descripcion + '</p> <br> ' + '<p> Completada </p> <br>' + '<p> Vencimiento: ' + element.fechaVencimiento + '</p> <br> <br>'
+        }
+        else {
+            retorno += '<p>' + element.descripcion + '</p> <br> ' + '<p> No completada </p> <br>' + '<p> Vencimiento: ' + element.fechaVencimiento + '</p> <br> <br>'
+        }
+    }
+    return retorno;
 }
 function Verificacion(ListaProyectos, nombre){
     let retorno = false;
@@ -56,7 +80,7 @@ function Verificacion(ListaProyectos, nombre){
     return retorno;
 }
 function Busqueda(ListaProyectos, nombre){
-    let retorno;
+    let retorno = null;
     for (let index = 0; index < ListaProyectos.length; index++) {
         const element = ListaProyectos[index];
         if (nombre == element.nombreProyecto) {
