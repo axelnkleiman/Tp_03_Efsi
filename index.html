@@ -27,10 +27,17 @@
         <input type="date" id="fecha">
         <button onclick="AgregarTareaAProyecto()" class="Agregar">Agregar Tarea Al Proyecto</button>
     </div>
-
+    <div class="container">
+        <h2>Mostrar Tareas De Un Proyecto</h2>
+        <p>Ingrese El Nombre Del Proyecto</p>
+        <input type="text" id="nombreProyecto2" placeholder="..." required>
+        <button onclick="BuscarTareas()" class="Agregar">Buscar Tareas</button>
+    </div>
     <div class="container">
         <h2>Otras Opciones</h2>
-        
+    </div>
+    <div class="container">
+        <div id="resultados"></div>
     </div>
 </body>
 </html>

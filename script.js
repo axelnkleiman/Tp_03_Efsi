@@ -41,6 +41,10 @@ function AgregarTareaAProyecto(){
     console.log(tarea)
     console.log(ListaProyectos)
 }
+function BuscarTareas(){
+    const index = Busqueda(ListaProyectos, document.getElementById('nombreProyecto2').value)
+    document.getElementById('resultados').innerHTML = 
+}
 function Verificacion(ListaProyectos, nombre){
     let retorno = false;
     for (let index = 0; index < ListaProyectos.length; index++) {
