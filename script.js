@@ -24,6 +24,7 @@ let ListaProyectos = [];
 let proyecto;
 
 function AgregarProyecto(){
+    document.getElementById('error').innerHTML = null
     if (ListaProyectos == null || Verificacion(ListaProyectos, document.getElementById('nombre').value) == false) {
         proyecto = new Proyecto(document.getElementById('nombre').value, document.getElementById('descripcion').value, [])
         ListaProyectos.push(proyecto);
@@ -35,8 +36,9 @@ function AgregarProyecto(){
     console.log(ListaProyectos)
 }
 function AgregarTareaAProyecto(){
+    document.getElementById('error').innerHTML = null
     tarea = new Tarea(document.getElementById('descripcion2').value, false, document.getElementById('fecha').value)
-    const index = Busqueda(ListaProyectos, document.getElementById('nombreProyecto').value)
+    const index = BusquedaProyecto(ListaProyectos, document.getElementById('nombreProyecto').value)
     if (index != null && document.getElementById('fecha').value != "") {
         ListaProyectos[index].pushearListaTareas(tarea)
     }
@@ -53,8 +55,28 @@ function AgregarTareaAProyecto(){
 }
 function BuscarTareas(){
     document.getElementById('error').innerHTML = null
-    const index = Busqueda(ListaProyectos, document.getElementById('nombreProyecto2').value)
-    document.getElementById('resultados').innerHTML = IterarTareas(ListaProyectos[index])
+    const index = BusquedaProyecto(ListaProyectos, document.getElementById('nombreProyecto2').value)
+    if (index != null) {
+        document.getElementById('resultados').innerHTML = IterarTareas(ListaProyectos[index])
+    }
+    else{
+        document.getElementById('error').innerHTML = 'Error de busqueda, nombre no encontrado'
+        console.log('Error de busqueda, nombre no encontrado')
+    }
+}
+function CompletarTarea(){
+    document.getElementById('error').innerHTML = null
+    const index = BusquedaProyecto(ListaProyectos, document.getElementById('nombreProyecto3').value)
+    if (index != null) {
+        const indexTarea = BusquedaTarea(ListaProyectos[index], document.getElementById('descripcion3').value)
+        if (indexTarea != null) {
+            ListaProyectos[index].listaTareas[indexTarea].estado = true;
+        }
+    }
+    else{
+        document.getElementById('error').innerHTML = 'Error de busqueda, nombre no encontrado'
+        console.log('Error de busqueda, nombre no encontrado')
+    }
 }
 function IterarTareas(item){
     let retorno = '';
@@ -79,12 +101,22 @@ function Verificacion(ListaProyectos, nombre){
     }
     return retorno;
 }
-function Busqueda(ListaProyectos, nombre){
+function BusquedaProyecto(ListaProyectos, nombre){
     let retorno = null;
     for (let index = 0; index < ListaProyectos.length; index++) {
         const element = ListaProyectos[index];
         if (nombre == element.nombreProyecto) {
             retorno = index;
+        }
+    }
+    return retorno;
+}
+function BusquedaTarea(proyecto, descripcion){
+    let retorno = null;
+    for (let index = 0; index < proyecto.listaTareas.length; index++) {
+        const element = proyecto.listaTareas[index];
+        if (descripcion == element.descripcion) {
+            retorno = index
         }
     }
     return retorno;
