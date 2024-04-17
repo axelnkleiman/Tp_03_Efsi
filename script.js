@@ -78,6 +78,16 @@ function CompletarTarea(){
         console.log('Error de busqueda, nombre no encontrado')
     }
 }
+function BuscarTareasPorVencimiento(){
+    document.getElementById('error').innerHTML = null
+    const index = BusquedaProyecto(ListaProyectos, document.getElementById('nombreProyecto4').value)
+    if (index != null && document.getElementById('fecha2').value != "") {
+        indexFecha = BuscarFecha(ListaProyectos[index], document.getElementById('fecha2'))
+        if (indexFecha != null) {
+            IterarTareas2(ListaProyectos[index.fechaVencimiento])            
+        }
+    }
+}
 function IterarTareas(item){
     let retorno = '';
     for (let index = 0; index < item.listaTareas.length; index++) {
@@ -117,6 +127,31 @@ function BusquedaTarea(proyecto, descripcion){
         const element = proyecto.listaTareas[index];
         if (descripcion == element.descripcion) {
             retorno = index
+        }
+    }
+    return retorno;
+}
+
+function BuscarFecha(proyecto, fecha){
+    let retorno = [];
+    for (let index = 0; index < proyecto.listaTareas.length; index++) {
+        const element = proyecto.listaTareas[index];
+        if (fecha == element.fechaVencimiento) {
+            retorno += element[index];
+        }
+    }
+    return retorno;
+}
+
+function IterarTareas2(item){
+    let retorno = '';
+    for (let index = 0; index < item.listaTareas.length; index++) {
+        const element = item.listaTareas[index]
+        if (item.fechaVencimiento == element.fechaVencimiento) {
+            retorno += '<p>' + element.tarea + '</p> <br> ' + '<p> Completada </p> <br>'
+        }
+        else{
+            retorno += '<p>a</p>'
         }
     }
     return retorno;
